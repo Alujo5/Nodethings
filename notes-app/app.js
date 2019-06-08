@@ -16,8 +16,20 @@ const command = process.argv[2]
 yargs.command({
     command : 'add',
     describe :'Adding a new note',
-    handler : function(){
-        console.log('Adding a new note!')
+    builder: {
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string'
+        },
+        body: {
+            describe: 'Alias',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler : function(argv){
+        console.log('Title: ' + argv.title + '\n' + 'Body: ' + argv.body)
     }
 })
 
@@ -48,4 +60,5 @@ yargs.command({
     }
 })
 
-console.log(yargs.argv)
+//console.log(yargs.argv)
+yargs.parse()
