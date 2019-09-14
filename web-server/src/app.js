@@ -1,13 +1,19 @@
 const path = require('path')
 const express = require('express')
+const hbs = require('hbs')
 console.log(__dirname)
+
+
 const app = express()
 
 const publicDirectoryPath = path.join(__dirname, '../public')
-const viewPath = path.join(__dirname,'../templates')
+const viewPath = path.join(__dirname,'../templates/views')
+const partialsPath = path.join(__dirname, '../templates/partials')
 
 app.set('view engine', 'hbs')
-app.set('view', viewPath)
+app.set('views', viewPath)
+hbs.registerPartials(partialsPath)
+
 app.use(express.static(publicDirectoryPath))
 
 app.get('', (req, res) => {
@@ -27,7 +33,8 @@ app.get('/about', (req, res) => {
 app.get('/help', (req, res) => {
     res.render('help', {
         title: 'Help Page',
-        message: ' Na like this we go dey they'
+        message: ' Na like this we go dey they',
+        name: 'Uchechukwu'
     })
 })
 
