@@ -38,6 +38,21 @@ app.get('/help', (req, res) => {
     })
 })
 
+app.get('/help/*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        message: 'Help article not Found',
+        name:'Uchechukwu'
+    })
+})
+
+app.get('/*'), (req, res) => {
+    res.render('404', {
+        title: '404',
+        message: 'Page not found',
+        name: 'Uchechukwu'
+    })
+}
 app.get('/weather', (req, res) => {
    res.send({
        forecast: 'It is raining',
