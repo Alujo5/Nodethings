@@ -33,32 +33,38 @@ app.get('/about', (req, res) => {
 app.get('/help', (req, res) => {
     res.render('help', {
         title: 'Help Page',
-        message: ' Na like this we go dey they',
+        message: ' Na like this we go they',
         name: 'Uchechukwu'
     })
 })
 
-app.get('/help/*', (req, res) => {
-    res.render('404', {
-        title: '404',
-        message: 'Help article not Found',
-        name:'Uchechukwu'
-    })
-})
 
-app.get('/*'), (req, res) => {
-    res.render('404', {
-        title: '404',
-        message: 'Page not found',
-        name: 'Uchechukwu'
-    })
-}
+
 app.get('/weather', (req, res) => {
    res.send({
        forecast: 'It is raining',
        location: 'Montreal'
    })
 })
+
+
+app.get('/help/*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        errorMessage: 'Help article not Found',
+        name:'Uchechukwu'
+    })
+})
+
+
+app.get('*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        errorMessage: 'Page not found',
+        name: 'Uchechukwu'
+    })
+})
+
 
 app.listen(3000, () =>{
    console.log('Server is up on port 3000.')
